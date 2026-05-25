@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display>
+  <macros>
+    <P>NeverGonna:GiveYouUp:</P>
+  </macros>
+  <widget type="label">
+    <text>Heartbeat:</text>
+    <x>20</x>
+    <y>20</y>
+    <horizontal_alignment>2</horizontal_alignment>
+  </widget>
+  <widget type="label">
+    <text>Error message:</text>
+    <x>20</x>
+    <y>50</y>
+    <horizontal_alignment>2</horizontal_alignment>
+  </widget>
+  <widget type="label">
+    <text>Error ID:</text>
+    <x>20</x>
+    <y>80</y>
+    <horizontal_alignment>2</horizontal_alignment>
+  </widget>
+  <widget type="textupdate">
+    <pv_name>$(P)MCU-Updated</pv_name>
+    <x>130</x>
+    <y>20</y>
+  </widget>
+  <widget type="textupdate">
+    <pv_name>$(P)MCU-ErrMsg</pv_name>
+    <x>130</x>
+    <y>50</y>
+    <width>210</width>
+    <format>6</format>
+  </widget>
+  <widget type="textupdate">
+    <pv_name>$(P)MCU-ErrId</pv_name>
+    <x>130</x>
+    <y>80</y>
+  </widget>
+  <widget type="action_button">
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>Acknowledge</description>
+      </action>
+    </actions>
+    <pv_name>$(P)MCU-ErrRst</pv_name>
+    <x>240</x>
+    <y>80</y>
+  </widget>
+  <widget type="stripchart">
+    <x>20</x>
+    <y>140</y>
+    <width>530</width>
+    <show_grid>true</show_grid>
+    <y_axes>
+      <y_axis>
+        <title>Execute</title>
+        <autoscale>true</autoscale>
+        <show_grid>true</show_grid>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>Min</name>
+        <y_pv>$(P)MCU-ThdExeMin</y_pv>
+        <trace_type>0</trace_type>
+        <point_type>2</point_type>
+        <point_size>2</point_size>
+      </trace>
+      <trace>
+        <name>Max</name>
+        <y_pv>$(P)MCU-ThdExeMax</y_pv>
+        <trace_type>0</trace_type>
+        <point_type>2</point_type>
+        <point_size>2</point_size>
+      </trace>
+    </traces>
+  </widget>
+  <widget type="stripchart">
+    <x>20</x>
+    <y>460</y>
+    <width>530</width>
+    <show_grid>true</show_grid>
+    <y_axes>
+      <y_axis>
+        <title>Latency</title>
+        <autoscale>true</autoscale>
+        <show_grid>true</show_grid>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>Min</name>
+        <y_pv>$(P)MCU-ThdLatMin</y_pv>
+        <trace_type>0</trace_type>
+        <point_type>2</point_type>
+        <point_size>2</point_size>
+      </trace>
+      <trace>
+        <name>Max</name>
+        <y_pv>$(P)MCU-ThdLatMax</y_pv>
+        <trace_type>0</trace_type>
+        <point_type>2</point_type>
+        <point_size>2</point_size>
+      </trace>
+    </traces>
+  </widget>
+  <widget type="stripchart">
+    <x>570</x>
+    <y>20</y>
+    <width>530</width>
+    <show_grid>true</show_grid>
+    <y_axes>
+      <y_axis>
+        <title>Period</title>
+        <autoscale>true</autoscale>
+        <show_grid>true</show_grid>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>Min</name>
+        <y_pv>$(P)MCU-ThdPrdMin</y_pv>
+        <trace_type>0</trace_type>
+        <point_type>2</point_type>
+        <point_size>2</point_size>
+      </trace>
+      <trace>
+        <name>Max</name>
+        <y_pv>$(P)MCU-ThdPrdMax</y_pv>
+        <trace_type>0</trace_type>
+        <point_type>2</point_type>
+        <point_size>2</point_size>
+      </trace>
+    </traces>
+  </widget>
+  <widget type="stripchart">
+    <x>570</x>
+    <y>340</y>
+    <width>530</width>
+    <show_grid>true</show_grid>
+    <y_axes>
+      <y_axis>
+        <title>Send</title>
+        <autoscale>true</autoscale>
+        <show_grid>true</show_grid>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>Min</name>
+        <y_pv>$(P)MCU-ThdSndMin</y_pv>
+        <trace_type>0</trace_type>
+        <point_type>2</point_type>
+        <point_size>2</point_size>
+      </trace>
+      <trace>
+        <name>Max</name>
+        <y_pv>$(P)MCU-ThdSndMax</y_pv>
+        <trace_type>0</trace_type>
+        <point_type>2</point_type>
+        <point_size>2</point_size>
+      </trace>
+    </traces>
+  </widget>
+  <widget type="label">
+    <text>Stat-OK:</text>
+    <x>20</x>
+    <y>110</y>
+    <horizontal_alignment>2</horizontal_alignment>
+  </widget>
+  <widget type="textupdate">
+    <pv_name>$(P)#m0-Stat-OK</pv_name>
+    <x>130</x>
+    <y>110</y>
+  </widget>
+  <widget type="byte_monitor">
+    <pv_name>$(P)#m0-Stat</pv_name>
+    <x>350</x>
+    <y>20</y>
+    <height>100</height>
+    <numBits>5</numBits>
+    <bitReverse>true</bitReverse>
+    <horizontal>false</horizontal>
+    <labels>
+      <text>Link up</text>
+      <text>Init</text>
+      <text>Pre OP</text>
+      <text>Safe OP</text>
+      <text>OP</text>
+    </labels>
+  </widget>
+</display>
