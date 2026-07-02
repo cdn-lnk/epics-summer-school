@@ -1,4 +1,5 @@
 #!/usr/bin/env iocsh
+on error halt
 
 epicsEnvSet IOC "NeverGonna:GiveYouUp"
 
