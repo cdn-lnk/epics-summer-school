@@ -23,3 +23,8 @@ iocshLoad "$(ecmccfg_DIR)/configureAxis.cmd" "CONFIG=$(E3_CMD_TOP)/cfg/axis1.ax"
 
 iocshLoad "$(ecmccfg_DIR)/applyConfig.cmd"
 iocshLoad "$(ecmccfg_DIR)/setAppMode.cmd"
+
+########################################
+# DO NOT EDIT ABOVE THIS LINE
+
+# Insert your code here
