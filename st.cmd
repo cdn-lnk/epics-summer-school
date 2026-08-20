@@ -12,10 +12,10 @@ iocshLoad "$(ecmccfg_DIR)/addSlave.cmd" "HW_DESC=EK1100, DEFAULT_SUBS=false, DEF
 iocshLoad "$(ecmccfg_DIR)/addSlave.cmd" "HW_DESC=EL1808, DEFAULT_SUBS=false, DEFAULT_SLAVE_PVS=false"
 iocshLoad "$(ecmccfg_DIR)/addSlave.cmd" "HW_DESC=EL7041-0052, DEFAULT_SUBS=false, DEFAULT_SLAVE_PVS=false"
 
-# Driving current (amplitude per phase): 600 mA
-ecmcConfigOrDie "Cfg.EcAddSdo(${ECMC_EC_SLAVE_NUM},0x8010,0x1,600,2)"
-# Holding current: 0
-ecmcConfigOrDie "Cfg.EcAddSdo(${ECMC_EC_SLAVE_NUM},0x8010,0x2,0,2)"
+# Driving current (amplitude per phase): 700 mA
+ecmcConfigOrDie "Cfg.EcAddSdo(${ECMC_EC_SLAVE_NUM},0x8010,0x1,700,2)"
+# Holding current: 1 mA (cannot be 0)
+ecmcConfigOrDie "Cfg.EcAddSdo(${ECMC_EC_SLAVE_NUM},0x8010,0x2,1,2)"
 # PSU voltage: 24 V
 ecmcConfigOrDie "Cfg.EcAddSdo(${ECMC_EC_SLAVE_NUM},0x8010,0x3,24000,2)"
 
