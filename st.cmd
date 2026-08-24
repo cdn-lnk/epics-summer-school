@@ -1,7 +1,7 @@
 #!/usr/bin/env iocsh
 on error halt
 
-epicsEnvSet IOC "NeverGonna:GiveYouUp"
+epicsEnvSet IOC "LensControl"
 
 require ecmccfg 8.0.0
 
@@ -28,3 +28,4 @@ iocshLoad "$(ecmccfg_DIR)/setAppMode.cmd"
 # DO NOT EDIT ABOVE THIS LINE
 
 # Insert your code here
+dbLoadRecords("db/lens_control.db", "AX=Axis, P=$(IOC), port=$(ECMC_ASYN_PORT), address=$(ECMC_ASYN_ADDR), timeout=$(ECMC_ASYN_TIMEOUT)")

@@ -1,0 +1,331 @@
+(7.0.8.1-5.1.1)school@localhost:~$ cat /etc/profile
+profile    profile.d/ 
+(7.0.8.1-5.1.1)school@localhost:~$ cat /etc/profile
+profile    profile.d/ 
+(7.0.8.1-5.1.1)school@localhost:~$ cat /etc/profile.d/
+70-systemd-shell-extra.sh  colorxzgrep.sh             flatpak.sh                 less.sh
+bash-color-prompt.sh       colorzgrep.csh             gawk.csh                   PackageKit.sh
+bash_completion.sh         colorzgrep.sh              gawk.sh                    sh.local
+colorgrep.csh              csh.local                  gnupg2.csh                 toolbox.sh
+colorgrep.sh               debuginfod.csh             gnupg2.sh                  vte.csh
+colorls.csh                debuginfod.sh              lang.csh                   vte.sh
+colorls.sh                 epics.sh                   lang.sh                    which2.csh
+colorxzgrep.csh            flatpak.csh                less.csh                   which2.sh
+(7.0.8.1-5.1.1)school@localhost:~$ cat /etc/profile.d/epics.sh 
+. /opt/base-7.0.8.1/require/5.1.1/bin/activate > /dev/null
+
+export EPICS_CA_ADDR_LIST="localhost"
+export EPICS_PVA_ADDR_LIST="localhost"
+(7.0.8.1-5.1.1)school@localhost:~$ 
+(7.0.8.1-5.1.1)school@localhost:~$ camonitor LensControl:SwitchPositive
+LensControl:SwitchPositive     <undefined> Pressed UDF INVALID
+^C
+(7.0.8.1-5.1.1)school@localhost:~$ pvmonitor LensControl:SwitchPositive
+^C(7.0.8.1-5.1.1)school@localhost:~$ camonitor LensControl:SwitchPositive
+LensControl:SwitchPositive     <undefined> Pressed UDF INVALID
+CA.Client.Exception...............................................
+    Warning: "Virtual circuit disconnect"
+    Context: "localhost:5064"
+    Source File: ../cac.cpp line 1238
+    Current Time: Mon Aug 24 2026 13:29:38.625138992
+..................................................................
+LensControl:SwitchPositive     2026-08-24 13:29:38.625183 *** disconnected
+LensControl:SwitchPositive     <undefined> Pressed UDF INVALID
+CA.Client.Exception...............................................
+LensControl:SwitchPositive     2026-08-24 13:34:17.326178 *** disconnected
+    Warning: "Virtual circuit disconnect"
+    Context: "localhost:5064"
+    Source File: ../cac.cpp line 1238
+    Current Time: Mon Aug 24 2026 13:34:17.326157188
+..................................................................
+LensControl:SwitchPositive     <undefined> Pressed UDF INVALID
+CA.Client.Exception...............................................
+LensControl:SwitchPositive     2026-08-24 13:36:44.273521 *** disconnected
+    Warning: "Virtual circuit disconnect"
+    Context: "localhost:5064"
+    Source File: ../cac.cpp line 1238
+    Current Time: Mon Aug 24 2026 13:36:44.273493789
+..................................................................
+LensControl:SwitchPositive     <undefined> Pressed UDF INVALID
+CA.Client.Exception...............................................
+LensControl:SwitchPositive     2026-08-24 13:40:01.501140 *** disconnected
+    Warning: "Virtual circuit disconnect"
+    Context: "localhost:5064"
+    Source File: ../cac.cpp line 1238
+    Current Time: Mon Aug 24 2026 13:40:01.501117000
+..................................................................
+LensControl:SwitchPositive     <undefined> Pressed UDF INVALID
+LensControl:SwitchPositiveCA.Client.Exception...............................................
+    Warning: "Virtual circuit disconnect"
+    Context: "localhost:5064"
+LensControl:SwitchPositive     2026-08-24 13:41:43.822190 *** disconnected
+    Source File: ../cac.cpp line 1238
+    Current Time: Mon Aug 24 2026 13:41:43.822169905
+..................................................................
+LensControl:SwitchPositive     <undefined> Pressed UDF INVALID
+CA.Client.Exception...............................................
+    Warning: "Virtual circuit disconnect"
+    Context: "localhost:5064LensControl:SwitchPositive     2026-08-24 13:42:58.313672 *** disconnected
+"
+    Source File: ../cac.cpp line 1238
+    Current Time: Mon Aug 24 2026 13:42:58.313650479
+..................................................................
+^C
+(7.0.8.1-5.1.1)school@localhost:~$ camonitor NeverGonna:GiveYouUp:#m0s001-BI02
+NeverGonna:GiveYouUp:#m0s001-BI02 2026-08-24 13:43:03.744740 True  
+NeverGonna:GiveYouUp:#m0s001-BI02 2026-08-24 13:43:36.374708 False  
+NeverGonna:GiveYouUp:#m0s001-BI02 2026-08-24 13:43:37.004707 True  
+NeverGonna:GiveYouUp:#m0s001-BI02 2026-08-24 13:43:37.534708 False  
+NeverGonna:GiveYouUp:#m0s001-BI02 2026-08-24 13:43:37.984707 True  
+CA.Client.Exception...............................................
+    Warning: "Virtual circuit disconnect"
+    Context: "localhost:5064"
+    Source File: ../cac.cpp line 1238
+    Current Time: Mon Aug 24 2026 13:43:51.554348951
+..................................................................
+NeverGonna:GiveYouUp:#m0s001-BI02 2026-08-24 13:43:51.554474 *** disconnected
+NeverGonna:GiveYouUp:#m0s001-BI02 2026-08-24 13:44:01.007550 True  
+^C
+(7.0.8.1-5.1.1)school@localhost:~$ caget NeverGonna:GiveYouUp:#m0s001-BI02.INP
+NeverGonna:GiveYouUp:#m0s001-BI02.INP @asyn(MC_CPU1,0,1)T_SMP_MS=10/TYPE=asyn
+(7.0.8.1-5.1.1)school@localhost:~$ caget -h
+
+Usage: caget [options] <PV name> ...
+
+  -h: Help: Print this message
+  -V: Version: Show EPICS and CA versions
+Channel Access options:
+  -w <sec>: Wait time, specifies CA timeout, default is 1.000000 second(s)
+  -c: Asynchronous get (use ca_get_callback and wait for completion)
+  -p <prio>: CA priority (0-99, default 0=lowest)
+Format options:
+      Default output format is "name value"
+  -t: Terse mode - print only value, without name
+  -a: Wide mode "name timestamp value stat sevr" (read PVs as DBR_TIME_xxx)
+  -d <type>: Request specific dbr type; use string (DBR_ prefix may be omitted)
+      or number of one of the following types:
+ DBR_STRING     0  DBR_STS_FLOAT    9  DBR_TIME_LONG   19  DBR_CTRL_SHORT    29
+ DBR_INT        1  DBR_STS_ENUM    10  DBR_TIME_DOUBLE 20  DBR_CTRL_INT      29
+ DBR_SHORT      1  DBR_STS_CHAR    11  DBR_GR_STRING   21  DBR_CTRL_FLOAT    30
+ DBR_FLOAT      2  DBR_STS_LONG    12  DBR_GR_SHORT    22  DBR_CTRL_ENUM     31
+ DBR_ENUM       3  DBR_STS_DOUBLE  13  DBR_GR_INT      22  DBR_CTRL_CHAR     32
+ DBR_CHAR       4  DBR_TIME_STRING 14  DBR_GR_FLOAT    23  DBR_CTRL_LONG     33
+ DBR_LONG       5  DBR_TIME_INT    15  DBR_GR_ENUM     24  DBR_CTRL_DOUBLE   34
+ DBR_DOUBLE     6  DBR_TIME_SHORT  15  DBR_GR_CHAR     25  DBR_STSACK_STRING 37
+ DBR_STS_STRING 7  DBR_TIME_FLOAT  16  DBR_GR_LONG     26  DBR_CLASS_NAME    38
+ DBR_STS_SHORT  8  DBR_TIME_ENUM   17  DBR_GR_DOUBLE   27
+ DBR_STS_INT    8  DBR_TIME_CHAR   18  DBR_CTRL_STRING 28
+Enum format:
+  -n: Print DBF_ENUM value as number (default is enum string)
+Arrays: Value format: print number of requested values, then list of values
+  Default:    Print all values
+  -# <count>: Print first <count> elements of an array
+  -S:         Print array of char as a string (long string)
+Floating point type format:
+  Default: Use %g format
+  -e <nr>: Use %e format, with a precision of <nr> digits
+  -f <nr>: Use %f format, with a precision of <nr> digits
+  -g <nr>: Use %g format, with a precision of <nr> digits
+  -s:      Get value as string (honors server-side precision)
+  -lx:     Round to long integer and print as hex number
+  -lo:     Round to long integer and print as octal number
+  -lb:     Round to long integer and print as binary number
+Integer number format:
+  Default: Print as decimal number
+  -0x: Print as hex number
+  -0o: Print as octal number
+  -0b: Print as binary number
+Alternate output field separator:
+  -F <ofs>: Use <ofs> as an alternate output field separator
+
+Example: caget -a -f8 my_channel another_channel
+  (uses wide output format, doubles are printed as %f with precision of 8)
+
+(7.0.8.1-5.1.1)school@localhost:~$ caget -S NeverGonna:GiveYouUp:#m0s001-BI02.INP
+NeverGonna:GiveYouUp:#m0s001-BI02.INP @asyn(MC_CPU1,0,1)T_SMP_MS=10/TYPE=asyn
+(7.0.8.1-5.1.1)school@localhost:~$ camonitor LensControl:SwitchPositive
+LensControl:SwitchPositive     2026-08-24 13:49:37.784799 Not pressed  
+LensControl:SwitchPositive     2026-08-24 13:49:58.805018 Pressed STATE MAJOR
+LensControl:SwitchPositive     2026-08-24 13:49:59.895054 Not pressed  
+LensControl:SwitchPositive     2026-08-24 13:50:00.565016 Pressed STATE MAJOR
+LensControl:SwitchPositive     2026-08-24 13:50:01.135042 Not pressed  
+LensControl:SwitchPositive     2026-08-24 13:51:03.115013 Pressed STATE MAJOR
+LensControl:SwitchPositive     2026-08-24 13:51:03.515094 Not pressed  
+LensControl:SwitchPositive     2026-08-24 13:51:04.015052 Pressed STATE MAJOR
+LensControl:SwitchPositive     2026-08-24 13:51:04.415026 Not pressed  
+LensControl:SwitchPositive     2026-08-24 13:51:05.025025 Pressed STATE MAJOR
+LensControl:SwitchPositive     2026-08-24 13:51:05.495032 Not pressed  
+LensControl:SwitchPositive     2026-08-24 13:51:06.765049 Pressed STATE MAJOR
+LensControl:SwitchPositive     2026-08-24 13:51:07.245019 Not pressed  
+LensControl:SwitchPositive     2026-08-24 13:51:07.655016 Pressed STATE MAJOR
+LensControl:SwitchPositive     2026-08-24 13:51:07.925015 Not pressed  
+LensControl:SwitchPositive     2026-08-24 13:51:08.215039 Pressed STATE MAJOR
+LensControl:SwitchPositive     2026-08-24 13:51:08.335072 Not pressed  
+LensControl:SwitchPositive     2026-08-24 13:51:08.595113 Pressed STATE MAJOR
+LensControl:SwitchPositive     2026-08-24 13:51:08.665250 Not pressed  
+LensControl:SwitchPositive     2026-08-24 13:51:08.755092 Pressed STATE MAJOR
+LensControl:SwitchPositive     2026-08-24 13:51:08.805465 Not pressed  
+LensControl:SwitchPositive     2026-08-24 13:51:08.905048 Pressed STATE MAJOR
+LensControl:SwitchPositive     2026-08-24 13:51:08.975055 Not pressed  
+CA.Client.Exception...............................................
+LensControl:SwitchPositive     2026-08-24 13:52:57.749177 *** disconnected
+    Warning: "Virtual circuit disconnect"
+    Context: "localhost:5064"
+    Source File: ../cac.cpp line 1238
+    Current Time: Mon Aug 24 2026 13:52:57.749153766
+..................................................................
+LensControl:SwitchPositive     2026-08-24 13:53:07.720420 Not pressed  
+^C
+(7.0.8.1-5.1.1)school@localhost:~$ camonitor LensControl:NegativeSwitch
+LensControl:NegativeSwitch     *** Not connected (PV not found)
+^[[A^[[A^[[A^[[^C   
+(7.0.8.1-5.1.1)school@localhost:~$ camonitor LensControl:SwitchPositive LensControl:SwitchNegative
+LensControl:SwitchPositive     2026-08-24 13:53:07.720420 Not pressed  
+LensControl:SwitchNegative     2026-08-24 13:53:07.720421 Not pressed  
+LensControl:SwitchPositive     2026-08-24 13:55:13.260896 Pressed  
+LensControl:SwitchPositive     2026-08-24 13:55:14.530929 Not pressed  
+LensControl:SwitchNegative     2026-08-24 13:55:15.920899 Pressed  
+LensControl:SwitchNegative     2026-08-24 13:55:17.010897 Not pressed  
+LensControl:SwitchPositive     2026-08-24 14:01:04.480888 Pressed  
+LensControl:SwitchPositive     2026-08-24 14:01:05.210918 Not pressed  
+LensControl:SwitchPositive     2026-08-24 14:01:05.820889 Pressed  
+LensControl:SwitchPositive     2026-08-24 14:01:06.290919 Not pressed  
+LensControl:SwitchPositive     2026-08-24 14:03:19.700886 Pressed  
+LensControl:SwitchPositive     2026-08-24 14:03:20.400884 Not pressed  
+LensControl:SwitchNegative     2026-08-24 14:03:21.560888 Pressed  
+LensControl:SwitchNegative     2026-08-24 14:03:22.210925 Not pressed  
+LensControl:SwitchPositive     2026-08-24 14:04:14.570902 Pressed  
+LensControl:SwitchPositive     2026-08-24 14:04:15.350899 Not pressed  
+LensControl:SwitchPositive     2026-08-24 14:04:15.990923 Pressed  
+LensControl:SwitchPositive     2026-08-24 14:04:16.790890 Not pressed  
+LensControl:SwitchNegative     2026-08-24 14:04:47.560892 Pressed  
+LensControl:SwitchNegative     2026-08-24 14:04:48.100916 Not pressed  
+LensControl:SwitchNegative     2026-08-24 14:04:48.430903 Pressed  
+LensControl:SwitchNegative     2026-08-24 14:04:48.740883 Not pressed  
+LensControl:SwitchPositive     2026-08-24 14:11:45.691194 *** disconnected
+LensControl:SwitchNegative     2026-08-24 14:11:45.691219 *** disconnected
+CA.Client.Exception...............................................
+    Warning: "Virtual circuit disconnect"
+    Context: "localhost:5064"
+    Source File: ../cac.cpp line 1238
+    Current Time: Mon Aug 24 2026 14:11:45.691160535
+..................................................................
+LensControl:SwitchPositive     2026-08-24 14:11:58.529478 Not pressed  
+LensControl:SwitchNegative     2026-08-24 14:11:58.529483 Not pressed  
+LensControl:SwitchNegative     2026-08-24 14:12:13.440051 Pressed  
+LensControl:SwitchNegative     2026-08-24 14:12:14.240024 Not pressed  
+LensControl:SwitchNegative     2026-08-24 14:12:14.840015 Pressed  
+LensControl:SwitchNegative     2026-08-24 14:12:15.340012 Not pressed  
+CA.Client.Exception...............................................
+LensControl:SwitchPositive     2026-08-24 14:23:32.202157 *** disconnected
+    Warning: "Virtual circuit disconnect"
+    Context: "localhost:5064"
+LensControl:SwitchNegative     2026-08-24 14:23:32.202176 *** disconnected
+    Source File: ../cac.cpp line 1238
+    Current Time: Mon Aug 24 2026 14:23:32.202131951
+..................................................................
+CAC: error = "Network is unreachable" sending UDP msg to 172.30.200.255:5064
+CAC: ok sending UDP msg to 172.30.200.255:5064
+LensControl:SwitchPositive     2026-08-24 14:24:32.576139 Not pressed  
+LensControl:SwitchNegative     2026-08-24 14:24:32.576141 Not pressed  
+LensControl:SwitchNegative     2026-08-24 14:25:49.376100 Pressed  
+LensControl:SwitchNegative     2026-08-24 14:25:49.676144 Not pressed  
+LensControl:SwitchNegative     2026-08-24 14:28:04.176109 Pressed  
+LensControl:SwitchNegative     2026-08-24 14:28:04.676115 Not pressed  
+LensControl:SwitchPositive     2026-08-24 15:51:31.784291 *** disconnected
+CA.Client.Exception...............................................
+LensControl:SwitchNegative     2026-08-24 15:51:31.784326 *** disconnected
+    Warning: "Virtual circuit disconnect"
+    Context: "localhost:5064"
+    Source File: ../cac.cpp line 1238
+    Current Time: Mon Aug 24 2026 15:51:31.784261350
+..................................................................
+^C   
+(7.0.8.1-5.1.1)school@localhost:~$ camonitor LensControl:AxisActPos LensControl:AxisStatus LensControl:AxisErrorid LensControl:AxisTargetPos LensControl:AxisTargetVelo LensControl:AxisCommand LensControl:AxisCmdData LensControl:AxisControl 
+LensControl:AxisActPos         <undefined> 0 UDF INVALID
+LensControl:AxisStatus         <undefined> 0 UDF INVALID
+LensControl:AxisErrorid        <undefined> 0 UDF INVALID
+LensControl:AxisTargetPos      <undefined> 0 UDF INVALID
+LensControl:AxisTargetVelo     <undefined> 0 UDF INVALID
+LensControl:AxisCommand        <undefined> 0 UDF INVALID
+LensControl:AxisCmdData        <undefined> 0 UDF INVALID
+LensControl:AxisControl        <undefined> 0 UDF INVALID
+CA.Client.Exception...............................................
+    Warning: "Virtual circuit disconnect"
+    Context: "LensControl:AxisActPos         2026-08-24 16:02:17.703144 *** disconnected
+localhost:5064"
+    Source File: ../cac.cpp line 1238
+LensControl:AxisStatus         2026-08-24 16:02:17.703175 *** disconnected
+    Current Time: Mon Aug 24 2026 16:02:17.703103753
+..................................................................
+LensControl:AxisErrorid        2026-08-24 16:02:17.703190 *** disconnected
+LensControl:AxisTargetPos      2026-08-24 16:02:17.703207 *** disconnected
+LensControl:AxisTargetVelo     2026-08-24 16:02:17.703213 *** disconnected
+LensControl:AxisCommand        2026-08-24 16:02:17.703220 *** disconnected
+LensControl:AxisCmdData        2026-08-24 16:02:17.703227 *** disconnected
+LensControl:AxisControl        2026-08-24 16:02:17.703237 *** disconnected
+LensControl:AxisActPos         <undefined> 0 UDF INVALID
+LensControl:AxisStatus         <undefined> 0 UDF INVALID
+LensControl:AxisErrorid        <undefined> 0 UDF INVALID
+LensControl:AxisTargetPos      <undefined> 0 UDF INVALID
+LensControl:AxisTargetVelo     <undefined> 0 UDF INVALID
+LensControl:AxisCommand        <undefined> 0 UDF INVALID
+LensControl:AxisCmdData        <undefined> 0 UDF INVALID
+LensControl:AxisControl        <undefined> 0 UDF INVALID
+LensControl:AxisStatus         2026-08-24 16:02:32.279212 9424  
+CA.Client.Exception...............................................
+    Warning: "Virtual circuit disconnect"
+    Context: "localhost:5064"
+LensControl:AxisActPos         2026-08-24 16:02:58.318904 *** disconnected
+    Source File: ../cac.cpp line 1238
+    Current Time: Mon Aug 24 2026 16:02:58.318880597
+LensControl:AxisStatus         2026-08-24 16:02:58.318937 *** disconnected
+..................................................................
+LensControl:AxisErrorid        2026-08-24 16:02:58.318948 *** disconnected
+LensControl:AxisTargetPos      2026-08-24 16:02:58.318956 *** disconnected
+LensControl:AxisTargetVelo     2026-08-24 16:02:58.318965 *** disconnected
+LensControl:AxisCommand        2026-08-24 16:02:58.318974 *** disconnected
+LensControl:AxisCmdData        2026-08-24 16:02:58.318982 *** disconnected
+LensControl:AxisControl        2026-08-24 16:02:58.318990 *** disconnected
+LensControl:AxisActPos         <undefined> 0 UDF INVALID
+LensControl:AxisStatus         <undefined> 0 UDF INVALID
+LensControl:AxisErrorid        <undefined> 0 UDF INVALID
+LensControl:AxisTargetPos      <undefined> 0 UDF INVALID
+LensControl:AxisTargetVelo     <undefined> 0 UDF INVALID
+LensControl:AxisCommand        <undefined> 3 UDF INVALID
+LensControl:AxisCmdData        <undefined> 0 UDF INVALID
+LensControl:AxisControl        <undefined> 0 UDF INVALID
+LensControl:AxisActPos         2026-08-24 16:03:13.728979 0  
+LensControl:AxisStatus         2026-08-24 16:03:13.729003 9424  
+LensControl:AxisErrorid        2026-08-24 16:03:13.729011 0  
+LensControl:AxisTargetPos      2026-08-24 16:03:13.729021 0  
+LensControl:AxisTargetVelo     2026-08-24 16:03:13.729025 0  
+LensControl:AxisCommand        2026-08-24 16:03:13.729031 3  
+LensControl:AxisCmdData        2026-08-24 16:03:13.729035 0  
+LensControl:AxisStatus         2026-08-24 16:09:03.728975 5.06031e+07  
+LensControl:AxisStatus         2026-08-24 16:09:13.728982 5.03411e+07  
+^C
+(7.0.8.1-5.1.1)school@localhost:~$ caget LensControl:AxisStatus.FRVL
+Channel connect timed out: 'LensControl:AxisStatus.FRVL' not found.
+(7.0.8.1-5.1.1)school@localhost:~$ caget LensControl:AxisStatus
+LensControl:AxisStatus         5.03411e+07
+(7.0.8.1-5.1.1)school@localhost:~$ caget LensControl:AxisControl.ZRVL
+LensControl:AxisControl.ZRVL   0
+(7.0.8.1-5.1.1)school@localhost:~$ caget LensControl:AxisControl
+LensControl:AxisControl        0
+(7.0.8.1-5.1.1)school@localhost:~$ caget LensControl:AxisStatus
+LensControl:AxisStatus         Illegal Value
+(7.0.8.1-5.1.1)school@localhost:~$ caget LensControl:AxisStatus
+LensControl:AxisStatus         Illegal Value
+(7.0.8.1-5.1.1)school@localhost:~$ caget LensControl:AxisStatus
+LensControl:AxisStatus         9424
+(7.0.8.1-5.1.1)school@localhost:~$ caget LensControl:AxisStatus
+LensControl:AxisStatus         9424
+(7.0.8.1-5.1.1)school@localhost:~$ caget LensControl:AxisStatusBits
+LensControl:AxisStatusBits     9424
+(7.0.8.1-5.1.1)school@localhost:~$ caget LensControl:AxisStatusBits.FRVL
+Channel connect timed out: 'LensControl:AxisStatusBits.FRVL' not found.
+(7.0.8.1-5.1.1)school@localhost:~$ caget LensControl:AxisStatusBits.B4
+LensControl:AxisStatusBits.B4  1
+(7.0.8.1-5.1.1)school@localhost:~$ 
+

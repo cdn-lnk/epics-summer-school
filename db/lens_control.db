@@ -1,0 +1,152 @@
+### HW SWITCHES
+record(bi, "$(P):SwitchPositive") {
+    field(DESC, "Positive direction switch")
+    field(SCAN, "I/O Intr")
+    field(DTYP, "asynInt32")
+    field(ZNAM, "Pressed")
+    field(ONAM, "Not pressed")
+		field(INP, "@asyn($(port),$(address),$(timeout))TYPE=asynInt32/ec0.s1.binaryInput02?")
+}
+
+record(bi, "$(P):SwitchNegative") {
+    field(DESC, "Negaive direction switch")
+    field(SCAN, "I/O Intr")
+    field(DTYP, "asynInt32")
+    field(ZNAM, "Pressed")
+    field(ONAM, "Not pressed")
+		field(INP, "@asyn($(port),$(address),$(timeout))TYPE=asynInt32/ec0.s1.binaryInput01?")
+}
+
+## ECMC AXIS
+record(ai, "$(P):$(AX)ActPos") {
+    field(DESC, "Axis Actual Position")
+    field(SCAN, "10 second")
+    field(DTYP, "asynFloat64")
+		field(INP, "@asyn($(port),$(address),$(timeout))TYPE=asynFloat64/ax1.actpos?")    
+
+    # Scaling and Presentation
+    field(EGU,  "rev")
+    field(PREC, "6")
+}
+
+record(ai, "$(P):$(AX)Status") {
+    field(DESC, "Axis Status Word")
+    field(SCAN, "10 second")
+    field(DTYP, "asynInt32")
+		field(INP, "@asyn($(port),$(address),$(timeout))TYPE=asynInt32/ax1.status?")    
+}
+
+record(mbboDirect, "$(P):$(AX)Control") {
+    field(DESC, "Axis Control Word")
+    field(SCAN, "10 second")
+    field(DTYP, "asynUInt32Digital")
+		field(OUT, "@asyn($(port),$(address),$(timeout))TYPE=asynUInt32Digital/ax1.control?") 
+}
+
+record(ao, "$(P):$(AX)TargetPos") {
+    field(DESC, "Axis Target Position")
+    field(SCAN, "10 second")
+    field(DTYP, "asynFloat64")
+		field(OUT, "@asyn($(port),$(address),$(timeout))TYPE=asynFloat64/ax1.targpos?")    
+
+    # Scaling and Presentation
+    field(EGU,  "rev")
+    field(PREC, "0")
+}
+
+record(ao, "$(P):$(AX)TargetVelo") {
+    field(DESC, "Axis Target Speed")
+    field(SCAN, "10 second")
+    field(DTYP, "asynFloat64")
+		field(OUT, "@asyn($(port),$(address),$(timeout))TYPE=asynFloat64/ax1.targvelo?")    
+
+    # Scaling and Presentation
+    field(EGU,  "rev/s")
+    field(PREC, "2")
+}
+
+record(ao, "$(P):$(AX)Command") {
+    field(DESC, "Command")
+    field(SCAN, "10 second")
+    field(DTYP, "asynInt32")
+		field(OUT, "@asyn($(port),$(address),$(timeout))TYPE=asynInt32/ax1.command?")    
+
+    # Scaling and Presentation
+    field(EGU,  "")
+    field(PREC, "0")
+}
+
+record(ao, "$(P):$(AX)CmdData") {
+    field(DESC, "Command data")
+    field(SCAN, "10 second")
+    field(DTYP, "asynInt32")
+		field(OUT, "@asyn($(port),$(address),$(timeout))TYPE=asynInt32/ax1.cmddata?")    
+
+    # Scaling and Presentation
+    field(EGU,  "")
+    field(PREC, "0")
+}
+
+record(ai, "$(P):$(AX)Errorid") {
+    field(DESC, "Error code")
+    field(SCAN, "10 second")
+    field(DTYP, "asynInt32")
+		field(INP, "@asyn($(port),$(address),$(timeout))TYPE=asynInt32/ax1.errorid?")    
+
+    # Scaling and Presentation
+    field(EGU,  "")
+    field(PREC, "0")
+}
+
+## APPLICATION
+record(mbbiDirect, "$(P):$(AX)StatusBits") {
+    field(DESC, "Axis Status Word Bits")
+    field(SCAN, "10 second")
+    field(DTYP, "Soft Channel")
+		field(INP, "$(P):$(AX)Status") 
+}
+
+record(bi, "$(P):$(AX)PowerOn") {
+    field(DESC, "Axis Power Status")
+    field(SCAN, "10 second")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Power Off")
+    field(ONAM, "Power On")
+		field(INP, "$(P):$(AX)StatusBits.B1")
+}
+
+record(bi, "$(P):$(AX)InPosition") {
+    field(DESC, "Axis Position Status")
+    field(SCAN, "10 second")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Not in position")
+    field(ONAM, "In position")
+		field(INP, "$(P):$(AX)StatusBits.B4")
+}
+
+record(bi, "$(P):$(AX)CanMoveForward") {
+    field(DESC, "Can axis move forward")
+    field(SCAN, "10 second")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Cannot move forward")
+    field(ONAM, "Can move forward")
+		field(INP, "$(P):$(AX)StatusBits.B6")
+}
+
+record(bi, "$(P):$(AX)CanMoveBackward") {
+    field(DESC, "Can axis move backward")
+    field(SCAN, "10 second")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Cannot move backward")
+    field(ONAM, "Can move backward")
+		field(INP, "$(P):$(AX)StatusBits.B7")
+}
+
+record(bi, "$(P):$(AX)Homed") {
+    field(DESC, "Axis homed status")
+    field(SCAN, "10 second")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Axis not homed")
+    field(ONAM, "Axis is homed")
+		field(INP, "$(P):$(AX)StatusBits.B9")
+}
