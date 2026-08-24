@@ -24,7 +24,7 @@ Record references:
 <summary>asyn interface (switches)</summary>
 
 > `.DTYP=asynInt32`  
-> `@asyn(port,address,timeout)TYPE=asynInt32/ec0.sXXX.binaryInputYY?`  
+> `@asyn(port,address,timeout)TYPE=asynInt32/ec0.sX.binaryInputYY?`  
 > port, address and timeout are provided by ecmccfg (use `epicsEnvShow`).
 
 </details>
@@ -37,14 +37,14 @@ Record references:
 
 |name|type|description
 |-:|-|-
-|actpos|asynFloat64|axis position
-|status|asynInt32|status word
-|control|asynUInt32Digital|control word
-|targpos|asynFloat64|target position
-|targvelo|asynFloat64|target speed
-|command|asynInt32|motion type
-|cmddata|asynInt32|motion parameters
-|errorid|asynInt32|error code
+|actpos|asynFloat64|axis position (read)
+|status|asynInt32|status word (read)
+|control|asynUInt32Digital|control word (write)
+|targpos|asynFloat64|target position (write)
+|targvelo|asynFloat64|target speed (write)
+|command|asynInt32|motion type (write)
+|cmddata|asynInt32|motion parameters (write)
+|errorid|asynInt32|error code (read)
 
 <details>
 <summary>Control word</summary>
