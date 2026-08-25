@@ -80,7 +80,7 @@ Record references:
 |1|velocity
 |2|relative
 |3|absolute
-|4|homing
+|10|homing
 
 |cmddata|description
 |-:|-
