@@ -33,7 +33,8 @@ Record references:
 <summary>asyn interface (motor)</summary>
 
 > `.DTYP=XXX`  
-> `@asyn(port,address,timeout)TYPE=XXX/axNN.name?`
+> `@asyn(port,address,timeout)TYPE=XXX/axN.name?`  
+> `@asynMask(port,address,mask,timeout)TYPE=XXX/axN.name?`
 
 |name|type|description
 |-:|-|-
