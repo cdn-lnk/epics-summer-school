@@ -40,7 +40,7 @@ Record references:
 |-:|-|-
 |actpos|asynFloat64|axis position (read)
 |status|asynInt32|status word (read)
-|control|asynUInt32Digital|control word (write)
+|control|asynUInt32Digital|control word (write) (mask)
 |targpos|asynFloat64|target position (write)
 |targvelo|asynFloat64|target speed (write)
 |command|asynInt32|motion type (write)
