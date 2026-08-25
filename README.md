@@ -45,7 +45,7 @@ Record references:
 |targvelo|asynFloat64|target speed (write)
 |command|asynInt32|motion type (write)
 |cmddata|asynInt32|motion parameters (write)
-|errorid|asynInt32|error code (read)
+|errorid|asynInt32|[error code](https://github.com/epics-modules/ecmc/blob/master/devEcmcSup/main/ecmcErrorsList.h) (read)
 
 <details>
 <summary>Control word</summary>
