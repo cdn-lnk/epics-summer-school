@@ -8,7 +8,7 @@ epicsEnvSet ECMC_AXIS_NO 1
 epicsEnvSet ECMC_MOTOR_NAME Axis${ECMC_AXIS_NO}
 epicsEnvSet ECMC_DESC ""
 epicsEnvSet ECMC_EGU ""
-epicsEnvSet ECMC_PREC 2
+epicsEnvSet ECMC_PREC 3
 epicsEnvSet ECMC_AXISCONFIG ""
 epicsEnvSet ECMC_EC_AXIS_HEALTH ""
 
@@ -52,7 +52,7 @@ epicsEnvSet ECMC_HOME_VEL_FRM ${ECMC_HOME_VEL_TO}
 epicsEnvSet ECMC_HOME_ACC ${ECMC_ACCS_EGU_PER_S2}
 
 # Controller
-epicsEnvSet ECMC_CNTRL_KP 0
+epicsEnvSet ECMC_CNTRL_KP 10
 epicsEnvSet ECMC_CNTRL_KI 0
 epicsEnvSet ECMC_CNTRL_KD 0
 epicsEnvSet ECMC_CNTRL_KFF 1
@@ -74,8 +74,8 @@ epicsEnvSet ECMC_MON_LAG_MON_TIME 0
 epicsEnvSet ECMC_MON_LAG_MON_ENA 0
 
 # At target
-epicsEnvSet ECMC_MON_AT_TARGET_TOL 0.01
-epicsEnvSet ECMC_MON_AT_TARGET_TIME 10
+epicsEnvSet ECMC_MON_AT_TARGET_TOL 0.001
+epicsEnvSet ECMC_MON_AT_TARGET_TIME 100
 epicsEnvSet ECMC_MON_AT_TARGET_ENA 1
 
 # Velocity
