@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <macros>
+    <P>LensControl</P>
+    <AX>Axis</AX>
+  </macros>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry</name>
+    <pv_name>$(P):LensRotation.VAL</pv_name>
+    <x>576</x>
+    <y>208</y>
+    <width>140</width>
+    <height>30</height>
+    <precision>2</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_12</name>
+    <text>Absolute Pos</text>
+    <x>581</x>
+    <y>188</y>
+  </widget>
+  <widget type="meter" version="3.0.0">
+    <name>Meter_1</name>
+    <pv_name>$(P):LensRotation.RVEL</pv_name>
+    <x>318</x>
+    <y>360</y>
+    <width>210</width>
+    <height>110</height>
+    <visible>false</visible>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Actual Position</name>
+    <x>124</x>
+    <y>170</y>
+    <width>386</width>
+    <height>179</height>
+    <transparent>true</transparent>
+    <widget type="led" version="2.0.0">
+      <name>LED</name>
+      <pv_name>$(P):LensRotation.HLS</pv_name>
+      <x>290</x>
+      <y>93</y>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label</name>
+      <text>SwitchPositive</text>
+      <x>250</x>
+      <y>123</y>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_2</name>
+      <pv_name>$(P):LensRotation.LLS</pv_name>
+      <x>40</x>
+      <y>93</y>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_1</name>
+      <text>SwitchNegative</text>
+      <y>123</y>
+    </widget>
+    <widget type="meter" version="3.0.0">
+      <name>Meter</name>
+      <pv_name>$(P):LensRotation.RBV</pv_name>
+      <x>70</x>
+      <width>210</width>
+      <height>110</height>
+      <precision>6</precision>
+      <limits_from_pv>false</limits_from_pv>
+      <minimum>-0.05</minimum>
+      <maximum>1.55</maximum>
+      <needle_color>
+        <color name="Text" red="0" green="0" blue="0">
+        </color>
+      </needle_color>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_1</name>
+      <pv_name>$(P):LensRotation.RBV</pv_name>
+      <x>127</x>
+      <y>123</y>
+      <precision>6</precision>
+    </widget>
+  </widget>
+  <widget type="byte_monitor" version="2.0.0">
+    <name>Byte Monitor</name>
+    <pv_name>$(P):LensRotation.MSTA</pv_name>
+    <x>628</x>
+    <y>361</y>
+    <width>173</width>
+    <height>240</height>
+    <visible>false</visible>
+    <numBits>15</numBits>
+    <horizontal>false</horizontal>
+    <labels>
+      <text>DIRECTION</text>
+      <text>DONE</text>
+      <text>PLUS_LS</text>
+      <text>HOMELS</text>
+      <text>Unused</text>
+      <text>POSITION</text>
+      <text>SLIP_STALL</text>
+      <text>HOME</text>
+      <text>PRESENT</text>
+      <text>PROBLEM</text>
+      <text>MOVING</text>
+      <text>GAIN_SUPPORT</text>
+      <text>COMM_ERR</text>
+      <text>MINUS_LS</text>
+      <text>HOMED</text>
+    </labels>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_2</name>
+    <pv_name>$(P):LensRotation.RVEL</pv_name>
+    <x>553</x>
+    <y>421</y>
+    <width>170</width>
+    <visible>false</visible>
+    <precision>6</precision>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry_2</name>
+    <pv_name>$(P):LensRotation.RLV</pv_name>
+    <x>576</x>
+    <y>268</y>
+    <width>140</width>
+    <height>30</height>
+    <precision>2</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_14</name>
+    <text>Relative Pos</text>
+    <x>581</x>
+    <y>248</y>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Velocity</name>
+    <x>510</x>
+    <y>21</y>
+    <width>281</width>
+    <height>136</height>
+    <transparent>true</transparent>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_1</name>
+      <pv_name>$(P):LensRotation.VELO</pv_name>
+      <x>42</x>
+      <y>26</y>
+      <width>140</width>
+      <height>30</height>
+      <precision>2</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_13</name>
+      <text>Target Vel</text>
+      <x>42</x>
+      <y>8</y>
+    </widget>
+    <widget type="bool_button" version="2.0.0">
+      <name>Boolean Button_4</name>
+      <pv_name>$(P):LensRotation.JOGF</pv_name>
+      <x>142</x>
+      <y>70</y>
+      <width>103</width>
+      <off_label>Jog forward</off_label>
+      <off_color>
+        <color name="Button_Background" red="210" green="210" blue="210">
+        </color>
+      </off_color>
+      <on_label>Jog forward</on_label>
+      <on_color>
+        <color name="On" red="0" green="255" blue="0">
+        </color>
+      </on_color>
+      <show_led>false</show_led>
+    </widget>
+    <widget type="bool_button" version="2.0.0">
+      <name>Boolean Button_5</name>
+      <pv_name>$(P):LensRotation.JOGR</pv_name>
+      <y>70</y>
+      <width>103</width>
+      <off_label>Jog backward</off_label>
+      <off_color>
+        <color name="Button_Background" red="210" green="210" blue="210">
+        </color>
+      </off_color>
+      <on_label>Jog backward</on_label>
+      <on_color>
+        <color name="On" red="0" green="255" blue="0">
+        </color>
+      </on_color>
+      <show_led>false</show_led>
+    </widget>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LED_3</name>
+    <pv_name>$(P):LensRotation.MSTA</pv_name>
+    <bit>5</bit>
+    <x>102</x>
+    <y>21</y>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_2</name>
+    <text>Power On</text>
+    <x>62</x>
+    <y>54</y>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_1</name>
+    <pv_name>$(P):LensRotation.CNEN</pv_name>
+    <x>50</x>
+    <y>90</y>
+    <width>125</width>
+    <height>61</height>
+    <off_label>Power On</off_label>
+    <off_color>
+      <color name="Button_Background" red="210" green="210" blue="210">
+      </color>
+    </off_color>
+    <on_label>Power Off</on_label>
+    <show_led>false</show_led>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LED_8</name>
+    <pv_name>$(P):LensRotation.MSTA</pv_name>
+    <bit>14</bit>
+    <x>249</x>
+    <y>21</y>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_6</name>
+    <text>Homed Status</text>
+    <x>209</x>
+    <y>54</y>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_6</name>
+    <pv_name>$(P):LensRotation.HOMF</pv_name>
+    <x>197</x>
+    <y>90</y>
+    <width>125</width>
+    <height>61</height>
+    <off_label>Home</off_label>
+    <off_color>
+      <color name="Button_Background" red="210" green="210" blue="210">
+      </color>
+    </off_color>
+    <on_label>Home</on_label>
+    <on_color>
+      <color name="Button_Background" red="210" green="210" blue="210">
+      </color>
+    </on_color>
+    <show_led>false</show_led>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LED_5</name>
+    <pv_name>$(P):LensRotation.DMOV</pv_name>
+    <x>395</x>
+    <y>21</y>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_3</name>
+    <text>In Position</text>
+    <x>355</x>
+    <y>54</y>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_3</name>
+    <pv_name>$(P):LensRotation.STOP</pv_name>
+    <x>343</x>
+    <y>90</y>
+    <width>125</width>
+    <height>61</height>
+    <off_label>Stop</off_label>
+    <off_color>
+      <color name="Button_Background" red="210" green="210" blue="210">
+      </color>
+    </off_color>
+    <on_label>Stop</on_label>
+    <on_color>
+      <color name="Button_Background" red="210" green="210" blue="210">
+      </color>
+    </on_color>
+    <show_led>false</show_led>
+  </widget>
+</display>

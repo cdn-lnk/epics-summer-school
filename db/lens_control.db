@@ -20,7 +20,7 @@ record(bi, "$(P):SwitchNegative") {
 ## ECMC AXIS
 record(ai, "$(P):$(AX)ActPos") {
     field(DESC, "Axis Actual Position")
-    field(SCAN, "10 second")
+    field(SCAN, ".1 second")
     field(DTYP, "asynFloat64")
 		field(INP, "@asyn($(port),$(address),$(timeout))TYPE=asynFloat64/ax1.actpos?")    
 
@@ -29,34 +29,47 @@ record(ai, "$(P):$(AX)ActPos") {
     field(PREC, "6")
 }
 
+record(ai, "$(P):$(AX)ActVel") {
+    field(DESC, "Axis Actual Velocity")
+    field(SCAN, ".1 second")
+    field(DTYP, "asynFloat64")
+		field(INP, "@asyn($(port),$(address),$(timeout))TYPE=asynFloat64/ax1.actvel?")
+		field(LOPR, "-0.30")
+		field(HOPR, "0.30")    
+
+    # Scaling and Presentation
+    field(EGU,  "rev/s")
+    field(PREC, "2")
+}
+
 record(ai, "$(P):$(AX)Status") {
     field(DESC, "Axis Status Word")
-    field(SCAN, "10 second")
+    field(SCAN, ".1 second")
     field(DTYP, "asynInt32")
 		field(INP, "@asyn($(port),$(address),$(timeout))TYPE=asynInt32/ax1.status?")    
 }
 
 record(mbboDirect, "$(P):$(AX)Control") {
     field(DESC, "Axis Control Word")
-    field(SCAN, "10 second")
+    field(SCAN, "Passive")
     field(DTYP, "asynUInt32Digital")
-		field(OUT, "@asyn($(port),$(address),$(timeout))TYPE=asynUInt32Digital/ax1.control?") 
+		field(OUT, "@asynMask($(port),$(address),0xFFFFFFFF,$(timeout))TYPE=asynUInt32Digital/ax1.control?")
 }
 
 record(ao, "$(P):$(AX)TargetPos") {
     field(DESC, "Axis Target Position")
-    field(SCAN, "10 second")
+    field(SCAN, "Passive")
     field(DTYP, "asynFloat64")
 		field(OUT, "@asyn($(port),$(address),$(timeout))TYPE=asynFloat64/ax1.targpos?")    
 
     # Scaling and Presentation
     field(EGU,  "rev")
-    field(PREC, "0")
+    field(PREC, "6")
 }
 
 record(ao, "$(P):$(AX)TargetVelo") {
     field(DESC, "Axis Target Speed")
-    field(SCAN, "10 second")
+    field(SCAN, "Passive")
     field(DTYP, "asynFloat64")
 		field(OUT, "@asyn($(port),$(address),$(timeout))TYPE=asynFloat64/ax1.targvelo?")    
 
@@ -65,33 +78,27 @@ record(ao, "$(P):$(AX)TargetVelo") {
     field(PREC, "2")
 }
 
-record(ao, "$(P):$(AX)Command") {
+record(longout, "$(P):$(AX)Command") {
     field(DESC, "Command")
-    field(SCAN, "10 second")
+    field(SCAN, "Passive")
     field(DTYP, "asynInt32")
-		field(OUT, "@asyn($(port),$(address),$(timeout))TYPE=asynInt32/ax1.command?")    
-
-    # Scaling and Presentation
-    field(EGU,  "")
-    field(PREC, "0")
+		field(OUT, "@asyn($(port),$(address),$(timeout))TYPE=asynInt32/ax1.command?")
 }
 
-record(ao, "$(P):$(AX)CmdData") {
+record(longout, "$(P):$(AX)CmdData") {
     field(DESC, "Command data")
-    field(SCAN, "10 second")
+    field(SCAN, "Passive")
     field(DTYP, "asynInt32")
 		field(OUT, "@asyn($(port),$(address),$(timeout))TYPE=asynInt32/ax1.cmddata?")    
-
-    # Scaling and Presentation
-    field(EGU,  "")
-    field(PREC, "0")
 }
 
 record(ai, "$(P):$(AX)Errorid") {
     field(DESC, "Error code")
-    field(SCAN, "10 second")
+    field(SCAN, ".1 second")
     field(DTYP, "asynInt32")
-		field(INP, "@asyn($(port),$(address),$(timeout))TYPE=asynInt32/ax1.errorid?")    
+		field(INP, "@asyn($(port),$(address),$(timeout))TYPE=asynInt32/ax1.errorid?") 
+		field(HIHI, "1")
+		field(HHSV, "MAJOR")
 
     # Scaling and Presentation
     field(EGU,  "")
@@ -101,14 +108,14 @@ record(ai, "$(P):$(AX)Errorid") {
 ## APPLICATION
 record(mbbiDirect, "$(P):$(AX)StatusBits") {
     field(DESC, "Axis Status Word Bits")
-    field(SCAN, "10 second")
+    field(SCAN, ".1 second")
     field(DTYP, "Soft Channel")
 		field(INP, "$(P):$(AX)Status") 
 }
 
 record(bi, "$(P):$(AX)PowerOn") {
     field(DESC, "Axis Power Status")
-    field(SCAN, "10 second")
+    field(SCAN, ".1 second")
     field(DTYP, "Soft Channel")
     field(ZNAM, "Power Off")
     field(ONAM, "Power On")
@@ -117,7 +124,7 @@ record(bi, "$(P):$(AX)PowerOn") {
 
 record(bi, "$(P):$(AX)InPosition") {
     field(DESC, "Axis Position Status")
-    field(SCAN, "10 second")
+    field(SCAN, ".1 second")
     field(DTYP, "Soft Channel")
     field(ZNAM, "Not in position")
     field(ONAM, "In position")
@@ -126,7 +133,7 @@ record(bi, "$(P):$(AX)InPosition") {
 
 record(bi, "$(P):$(AX)CanMoveForward") {
     field(DESC, "Can axis move forward")
-    field(SCAN, "10 second")
+    field(SCAN, ".1 second")
     field(DTYP, "Soft Channel")
     field(ZNAM, "Cannot move forward")
     field(ONAM, "Can move forward")
@@ -135,7 +142,7 @@ record(bi, "$(P):$(AX)CanMoveForward") {
 
 record(bi, "$(P):$(AX)CanMoveBackward") {
     field(DESC, "Can axis move backward")
-    field(SCAN, "10 second")
+    field(SCAN, ".1 second")
     field(DTYP, "Soft Channel")
     field(ZNAM, "Cannot move backward")
     field(ONAM, "Can move backward")
@@ -144,9 +151,62 @@ record(bi, "$(P):$(AX)CanMoveBackward") {
 
 record(bi, "$(P):$(AX)Homed") {
     field(DESC, "Axis homed status")
-    field(SCAN, "10 second")
+    field(SCAN, ".1 second")
     field(DTYP, "Soft Channel")
     field(ZNAM, "Axis not homed")
     field(ONAM, "Axis is homed")
 		field(INP, "$(P):$(AX)StatusBits.B9")
+}
+
+## Control word encoding
+
+record(bo, "$(P):$(AX)ControlPowerON") {
+    field(DESC, "Axis Power On")
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Axis power OFF ")
+    field(ONAM, "Axis power ON")
+		field(OUT, "$(P):$(AX)Control.B0 PP")
+}
+
+record(bo, "$(P):$(AX)ExecCommand") {
+    field(DESC, "Axis command executiom")
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Axis do not execute")
+    field(ONAM, "Axis execute")
+		field(HIGH, "0.01")
+		field(OUT, "$(P):$(AX)Control.B1 PP")
+}
+
+record(bo, "$(P):$(AX)ControlStop") {
+    field(DESC, "Axis Stop")
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Axis stop not active")
+    field(ONAM, "Axis stop active")
+		field(HIGH, "0.01")
+		field(OUT, "$(P):$(AX)Control.B2 PP")
+}
+
+record(bo, "$(P):$(AX)ControlErrorReset") {
+    field(DESC, "Axis error reset")
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Axis reset not active")
+    field(ONAM, "Axis reset activated")
+		field(HIGH, "0.01")
+		field(OUT, "$(P):$(AX)Control.B3 PP")
+}
+
+record(mbbo, "$(P):$(AX)CommandCodes") {
+    field(DESC, "Command select")
+    field(SCAN, "Passive")
+    field(DTYP, "Raw Soft Channel")
+
+		field(ZRVL, "1") field(ZRST, "Velocity")
+		field(ONVL, "2") field(ONST, "Relative")
+		field(TWVL, "3") field(TWST, "Absolute")
+		field(THVL, "10") field(THST, "Homing")
+		field(OUT, "$(P):$(AX)Command PP")
 }

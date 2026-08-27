@@ -28,4 +28,6 @@ iocshLoad "$(ecmccfg_DIR)/setAppMode.cmd"
 # DO NOT EDIT ABOVE THIS LINE
 
 # Insert your code here
-dbLoadRecords("db/lens_control.db", "AX=Axis, P=$(IOC), port=$(ECMC_ASYN_PORT), address=$(ECMC_ASYN_ADDR), timeout=$(ECMC_ASYN_TIMEOUT)")
+#-dbLoadRecords("db/lens_control.db", "AX=Axis, P=$(IOC), port=$(ECMC_ASYN_PORT), address=$(ECMC_ASYN_ADDR), timeout=$(ECMC_ASYN_TIMEOUT)")
+dbLoadRecords("db/motor_record_lens_control.db", "P=$(IOC), port=$(ECMC_MOTOR_PORT), axis_number=$(ECMC_AXIS_NO)")
+dbLoadRecords("db/magic.db", "port=$(ECMC_MOTOR_PORT), axis_number=$(ECMC_AXIS_NO)")

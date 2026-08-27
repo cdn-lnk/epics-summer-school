@@ -1,0 +1,14 @@
+record(motor, "$(P):LensRotation") {
+    field(DESC, "Motor record for Lens rotation")
+    field(SCAN, "Passive")
+    field(DTYP, "asynMotor")
+		field(OUT, "@asyn($(port), $(axis_number))")
+    field(VELO, "0.1")
+    field(RDBD, "0.01")
+}
+
+#record(ai,"$(P):ActVel") {
+#    field(DTYP, "Soft Channel")
+#    field(INP,"$(P):LensRotation.RVEL")
+#		field()
+#}

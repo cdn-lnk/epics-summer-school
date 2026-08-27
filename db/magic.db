@@ -1,0 +1,34 @@
+record(longout,"HomProc") {
+    field(VAL, "1")
+    field(DTYP, "asynInt32")
+    field(PINI, "YES")
+    field(OUT,"@asyn($(port),$(axis_number))HomProc")
+}
+
+record(ao,"HomPos") {
+    field(VAL, "0.0")
+    field(DTYP, "asynFloat64")
+    field(PINI, "YES")
+    field(OUT,"@asyn($(port),$(axis_number))HomPos")
+}
+
+record(ao,"VelToHom") {
+    field(VAL, "0.1")
+    field(DTYP, "asynFloat64")
+    field(PINI, "YES")
+    field(OUT,"@asyn($(port),$(axis_number))VelToHom")
+}
+
+record(ao,"VelFrmHom") {
+    field(VAL, "0.1")
+    field(DTYP, "asynFloat64")
+    field(PINI, "YES")
+    field(OUT,"@asyn($(port),$(axis_number))VelFrmHom")
+}
+
+record(ao,"AccHom") {
+    field(VAL, "1")
+    field(DTYP, "asynFloat64")
+    field(PINI, "YES")
+    field(OUT,"@asyn($(port),$(axis_number))AccHom")
+}
